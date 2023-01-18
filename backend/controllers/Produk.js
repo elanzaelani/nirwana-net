@@ -1,0 +1,151 @@
+import Produk from '../models/ProdukModel.js';
+import User from '../models/UserModel.js';
+import {Op} from 'sequelize';
+
+
+export const getProduks=async(req,res)=>{
+    try {
+        let response;
+        if(req.role === "admin"){
+            response = await Produk.findAll({
+                attributes:['uuid','nama_produk'],
+                include:[{
+                    model:User,
+                    attributes:['name','email']
+                }]
+            }) ;
+        }else{
+            response = await Produk.findAll({
+                attributes:['uuid','nama_produk'],
+                where:{
+                    userId:req.userId
+                },
+                include:[{
+                    model:User,
+                    attributes:['name','email']
+                }]
+            }) ;
+        }
+        res.status(200).json(response)
+    } catch (e) {
+        res.status(500).json({msg:e.message})
+    } 
+}
+
+export const getProdukById= async(req,res)=>{
+    try {
+        const produk = await Produk.findOne({
+            where: {
+                uuid : req.params.id
+            }
+        });
+        if(!produk)return res.status(404).json({msg:"Data Produk tidak ditemukan.."})
+        let response;
+        if(req.role === "admin"){
+            response = await Produk.findOne({
+                attributes:['uuid','nama_produk'],
+                where:{
+                    id:produk.id
+                },
+                include:[{
+                    model:User,
+                    attributes:['name','email']
+                }]
+            }) ;
+        }else{
+            response = await Produk.findOne({
+                attributes:['uuid','nam_produk'],
+                where:{
+                    [Op.and]:[{id:produk.id},
+                        {userId:req.userId}]
+                    
+                },
+                include:[{
+                    model:User,
+                    attributes:['name','email']
+                }]
+            }) ;
+        }
+        res.status(200).json(response)
+    } catch (e) {
+        res.status(500).json({msg:e.message})
+    } 
+}
+
+export const updateProduk=async(req,res)=>{
+    try {
+        const produk= await Produk.findOne({
+            where:{
+                uuid:req.params.id
+            }
+        });
+        if(!produk)return res.status(404).json({msg:"data tidak ditemukan"});
+        const {nama_produk}=req.body;
+        if(req.role === "admin"){
+            await Produk.update({nama_produk:nama_produk},{
+                where: {
+                    id:produk.id
+                }
+            })
+        }else{
+            if(req.userId !== produk.userId)return res.status(403).json({msg:"Akses terlarang"})
+            await Produk.update({nama_produk},{
+                    where:{
+                        [Op.and]:[{id:produk.id},
+                            {userId:req.userId}] 
+                    }
+            });
+        }
+        res.status(200).json({msg:"Data Produk Berhasil DiUpdate"})
+    } catch (error) {
+        res.status(500).json({msg:error.message})
+        
+    }
+
+}
+
+export const createProduk=async(req,res)=>{
+    const {nama_produk}=req.body;
+    try {
+        await Produk.create({
+            nama_produk:nama_produk,
+            userId:req.userId
+
+        });
+        res.status(201).json({msg:" Mantap .. Data Produk Berhasil ditambahkan"});
+    } catch (error) {
+        res.status(500).json({msg:error.message});
+        
+    }
+}
+
+export const deleteProduk=async(req,res)=>{
+    try {
+        const produk= await Produk.findOne({
+            where:{
+                uuid:req.params.id
+            }
+        });
+        if(!produk)return res.status(404).json({msg:"data Produk tidak ditemukan"});
+        if(req.role === "admin"){
+            await Produk.destroy({
+                where: {
+                    id:produk.id
+                }
+            })
+        }else{
+            if(req.userId !== produk.userId)return res.status(403).json({msg:"Akses terlarang"})
+            await Produk.destroy({
+                    where:{
+                        [Op.and]:[{id:produk.id},
+                            {userId:req.userId}] 
+                    }
+            });
+        }
+        res.status(200).json({msg:"Data Produk Berhasil dihapus"})
+    } catch (error) {
+        res.status(500).json({msg:error.message})
+        
+    }
+
+}

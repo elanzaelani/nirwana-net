@@ -1,0 +1,55 @@
+
+###
+//Login
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email":"elan@gmail.com",
+    "password":"sukses"   
+}
+
+//ME
+###
+GET http://localhost:5000/me
+###
+//Logout
+DELETE http://localhost:5000/logout
+
+
+
+
+###
+//get All Paket
+GET http://localhost:5000/pakets
+###
+//get Single Paket
+GET http://localhost:5000/paket/b1ed8d94-c7a4-449f-a363-771fd6fd7953
+
+###
+//Create Paket
+POST http://localhost:5000/paket/
+Content-Type: application/json
+
+{
+   "nama_paket":"Paket Darurat",
+   "speed":"20 mbps",
+   "harga":100,
+   "harga_perorata":3000
+}
+
+###
+//Update Paket
+PATCH http://localhost:5000/paket/b1ed8d94-c7a4-449f-a363-771fd6fd7953
+Content-Type: application/json
+
+{
+   "nama_paket": "Paket Keluarga",
+    "speed": "200 mbps",
+    "harga": 50000,
+    "harga_perorata": 3000
+}
+
+###
+
+DELETE http://localhost:5000/paket/a13c824b-17d9-4b18-b20c-3ede15d8a0ae
