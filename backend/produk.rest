@@ -24,4 +24,4 @@ PATCH  http://localhost:5000/produk/fc72f467-4e91-4a18-a3cc-8094492dfede
 
 ###
 // Delete Data Produk
-DELETE http://localhost:5000/produk/fc72f467-4e91-4a18-a3cc-8094492dfede
+DELETE http://localhost:5000/produk/3d7cc6ad-4762-4c65-a3be-f8a8aa0127ce

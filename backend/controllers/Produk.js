@@ -54,7 +54,7 @@ export const getProdukById= async(req,res)=>{
             }) ;
         }else{
             response = await Produk.findOne({
-                attributes:['uuid','nam_produk'],
+                attributes:['uuid','nama_produk'],
                 where:{
                     [Op.and]:[{id:produk.id},
                         {userId:req.userId}]

@@ -2,6 +2,7 @@ import sequelize from 'sequelize'
 import {Sequelize} from 'sequelize'
 import db from '../config/Database.js'
 import User from './UserModel.js'  
+import Produk from './ProdukModel.js'
 
 const {DataTypes}= sequelize;
 
@@ -37,14 +38,20 @@ const Paket = db.define('paket',{
             notEmpty:true
         }
     },
-     harga_perorata:{
+     hrg_prorata:{
         type:DataTypes.INTEGER,
         allowNull:false,
         validate:{
             notEmpty:true
         }
     },
-    
+    produkId:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },
      userId:{
          type:DataTypes.INTEGER,
          allowNull:false,
@@ -59,7 +66,10 @@ const Paket = db.define('paket',{
 
 //membuat relasi
 //One to Many = satu User bisa input byk product
+
 User.hasMany(Paket)
 Paket.belongsTo(User,{foreignKey:'userId'})
-
+Paket.belongsTo(Produk,{foreignKey:'produkId'})
 export default Paket;
+
+

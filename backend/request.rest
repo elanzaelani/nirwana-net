@@ -1,13 +1,13 @@
-//Creae User
+//Create User
 POST http://localhost:5000/user
 Content-Type: application/json
 
 {
-    "name":"Eri",
-    "email":"eri@gmail.com",
+    "name":"elan",
+    "email":"el@gmail.com",
     "password":"sukses",
     "confPassword":"sukses",
-    "role":"user"
+    "role":"admin"
 }
 
 ###
@@ -39,7 +39,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email":"elan@gmail.com",
+    "email":"eri@gmail.com",
     "password":"sukses"   
 }
 

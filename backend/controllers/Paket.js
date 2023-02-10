@@ -2,15 +2,17 @@ import Paket from '../models/PaketModel.js';
 import User from '../models/UserModel.js';
 import {json, Op} from 'sequelize';
 import Karyawan from '../models/KaryawanModel.js';
+import Produk from '../models/ProdukModel.js';
 
 export const createPaket=async(req,res)=>{
-    const {nama_paket,speed,harga,harga_perorata}=req.body;
+    const {nama_paket,speed,harga,hrg_prorata,produkId}=req.body;
     try {
         await Paket.create({
             nama_paket:nama_paket,
             speed:speed,
             harga:harga,
-            harga_perorata:harga_perorata,
+            hrg_prorata:hrg_prorata,
+            produkId:produkId,
             userId:req.userId
 
         });
@@ -26,8 +28,13 @@ export const getPakets =async(req,res)=>{
     let response;
     if(req.role === "admin"){
         response = await Paket.findAll({
-            attributes:['uuid','nama_paket','speed','harga','harga_perorata'],
-            include:[{
+            attributes:['id','uuid','nama_paket','speed','harga','hrg_prorata'],
+            include:[
+                {
+                    model:Produk,
+                    attributes:['nama_produk']
+                },
+                {
                 model:User,
                 attributes:['name','email']
             }]
@@ -35,8 +42,13 @@ export const getPakets =async(req,res)=>{
         });
     }else{
         response= await Paket.findAll({
-            attributes:['nama_paket','speed','harga','harga_perorata'],
-            include:[{
+            attributes:['id','uuid','nama_paket','speed','harga','hrg_prorata'],
+            include:[
+                {
+                    model:Produk,
+                    attributes:['nama_produk']
+                },
+                {
                 model:User,
                 attributes:['name','email']
             }]
@@ -60,24 +72,34 @@ export const getPaketById= async(req,res)=>{
         let response;
         if(req.role === "admin"){
             response = await Paket.findOne({
-                attributes:['uuid','nama_paket','speed','harga','harga_perorata'],
+                attributes:['uuid','nama_paket','speed','harga','hrg_prorata'],
                 where:{
                     id:paket.id
                 },
-                include:[{
+                include:[
+                    {
+                        model:Produk,
+                        attributes:['nama_produk']
+                    },
+                    {
                     model:User,
                     attributes:['name','email']
                 }]
             }) ;
         }else{
             response = await Paket.findOne({
-                attributes:['uuid','nama_paket','speed','harga','harga_perorata'],
+                attributes:['uuid','nama_paket','speed','harga','hrg_prorata'],
                 where:{
                     [Op.and]:[{id:paket.id},
                         {userId:req.userId}]
                     
                 },
-                include:[{
+                include:[
+                    {
+                        model:Produk,
+                        attributes:['nama_produk']
+                    },
+                    {
                     model:User,
                     attributes:['name','email']
                 }]
@@ -96,16 +118,16 @@ export const updatePaket=async(req,res)=>{
             }
         });
         if(!paket)return res.status(404).json({msg:"data tidak ditemukan"});
-        const {nama_paket,speed,harga,harga_perorata}=req.body;
+        const {nama_paket,speed,harga,hrg_prorata,produkId}=req.body;
         if(req.role === "admin"){
-            await Paket.update({nama_paket,speed,harga,harga_perorata},{
+            await Paket.update({nama_paket,speed,harga,hrg_prorata,produkId},{
                 where: {
                     id:paket.id
                 }
             })
         }else{
             if(req.userId !== paket.userId)return res.status(403).json({msg:"Akses terlarang"})
-            await Paket.update({nama_paket,speed,harga,harga_perorata},{
+            await Paket.update({nama_paket,speed,harga,hrg_prorata,produkId},{
                     where:{
                         [Op.and]:[{id:paket.id},
                             {userId:req.userId}] 

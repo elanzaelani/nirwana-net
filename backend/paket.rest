@@ -5,7 +5,7 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email":"elan@gmail.com",
+    "email":"eri@gmail.com",
     "password":"sukses"   
 }
 
@@ -32,10 +32,11 @@ POST http://localhost:5000/paket/
 Content-Type: application/json
 
 {
-   "nama_paket":"Paket Darurat",
-   "speed":"20 mbps",
-   "harga":100,
-   "harga_perorata":3000
+   "nama_paket":"Voucher 2RB - 3 JAM",
+   "speed":"1 Mbps",
+   "harga":0,
+   "hrg_prorata":2000,
+   "produkId":2
 }
 
 ###

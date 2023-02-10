@@ -19,6 +19,7 @@ import Karyawan from './models/KaryawanModel.js';
 import Pelanggan from './models/PelangganModel.js'
 import Produk from './models/ProdukModel.js';
 import Jabatan from './models/JabatanModel.js'
+import Paket from './models/PaketModel.js'
 
 dotenv.config()
 
