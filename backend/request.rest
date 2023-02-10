@@ -3,8 +3,8 @@ POST http://localhost:5000/user
 Content-Type: application/json
 
 {
-    "name":"elan",
-    "email":"el@gmail.com",
+     "name":"Eriyanto",
+    "email":"eriyanto@gmail.com",
     "password":"sukses",
     "confPassword":"sukses",
     "role":"admin"
@@ -23,8 +23,8 @@ PATCH  http://localhost:5000/user/605a7525-8491-474f-8f48-390e3f7aa34d
 Content-Type: application/json
 
 {
-    "name":"Elan Z",
-    "email":"elan@gmail.com",
+    "name":"Eriyanto",
+    "email":"eriyanto@gmail.com",
     "password":"sukses",
     "confPassword":"sukses",
     "role":"admin"

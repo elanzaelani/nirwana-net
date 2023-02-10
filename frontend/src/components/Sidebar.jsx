@@ -1,20 +1,20 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import RiCustomerService2Fill from 'react-icons/'
 
 const Sidebar = () => {
-  const [produks, setProduk] = useState([]);
+  const [rows, setRows] = useState();
   
-  const gt = async () => {
-    const response = await axios.get(`http://localhost:5000/produks`);
-    setProduk(response.data);
+  useEffect(() => {
+    getRows();
+  }, []);
+  
+  const getRows = async () => {
+    const response = await axios.get(`http://localhost:5000/produkRows`);
+    setRows(response.data.totalRows);
 
   };
-  
-  const rows = setProduk.length
-  // const array = setProduk
-  // const rows= array.length;
 
 
 
@@ -91,6 +91,15 @@ const Sidebar = () => {
               Karyawan
             </p>
           </a>
+        </li>
+        <li className="nav-item">
+          <NavLink to={"/paket"} className="nav-link">
+            <i className="nav-icon far fa-calendar-alt" />
+            <p>
+              Paket
+              <span className="badge badge-info right">{rows}</span>
+            </p>
+          </NavLink>
         </li>
         <li className="nav-item">
           <a href="#" className="nav-link">

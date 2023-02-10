@@ -145,14 +145,6 @@ const FormAddPelanggan = () => {
 
                 <div className="form-group">
                   <label htmlFor="jenis-kelamin">Jenis kelamin </label>
-                  {/* <input
-                    type="text"
-                    className="input"
-                    value={jKelamin}
-                    placeholder="Jenis Kelamin"
-                    onChange={(e) => setJKelamin(e.target.value)}
-                  /> */}
-
                   <select
                     className="form-control"
                     value={jKelamin}

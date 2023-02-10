@@ -7,6 +7,12 @@ Content-Type: application/json
 }
 
 ###
+//getALL Data Produk/search/pagination
+GET  http://localhost:5000/produks?search_query=home&page=0&limit=10
+###
+//getCount Data Produk
+GET  http://localhost:5000/produkRows
+###
 //getALL Data Produk
 GET  http://localhost:5000/produks
 
@@ -20,7 +26,7 @@ PATCH  http://localhost:5000/produk/fc72f467-4e91-4a18-a3cc-8094492dfede
 
 {
     "nama_produk":"Paket Voucher Update"
-}
+} 
 
 ###
 // Delete Data Produk

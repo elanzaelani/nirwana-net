@@ -3,12 +3,24 @@ import User from '../models/UserModel.js';
 import {Op} from 'sequelize';
 
 
+export const totalCount=async(req,res)=>{
+    // const page=parseInt(req.query.page)||0;
+    // const limit=parseInt(req.query.limit)||10;
+    // const search=req.query.search_query||"";
+    // const offset=limit*page;
+    const totalRows =await Produk.count();
+    const result =await Produk.findAll()
+    res.json({
+        totalRows:totalRows
+    })
+}
+
 export const getProduks=async(req,res)=>{
     try {
         let response;
         if(req.role === "admin"){
             response = await Produk.findAll({
-                attributes:['uuid','nama_produk'],
+                attributes:['id','uuid','nama_produk'],
                 include:[{
                     model:User,
                     attributes:['name','email']
@@ -16,7 +28,7 @@ export const getProduks=async(req,res)=>{
             }) ;
         }else{
             response = await Produk.findAll({
-                attributes:['uuid','nama_produk'],
+                attributes:['id','uuid','nama_produk'],
                 where:{
                     userId:req.userId
                 },
@@ -66,7 +78,7 @@ export const getProdukById= async(req,res)=>{
                 }]
             }) ;
         }
-        res.status(200).json(response)
+        res.status(200).json(response,)
     } catch (e) {
         res.status(500).json({msg:e.message})
     } 

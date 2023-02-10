@@ -10,7 +10,8 @@ import Produk from './pages/produkPage/Produk';
 import Users from './pages/Users';
 import Pelanggan from './pages/pelangganPage/Pelanggan';
 import AddPelanggan from './pages/pelangganPage/AddPelanggan';
-
+import Paket from './pages/paketPage/Paket';
+import AddPaket from './pages/paketPage/AddPaket';
 
 function App() {
   return (
@@ -23,10 +24,12 @@ function App() {
           <Route path="/users/add" element={<AddUers />} />
           <Route path="/users/edit/:id" element={<Edituser />} />
           <Route path="/produk" element={<Produk />} />
-          <Route path="/pelanggan" element={<Pelanggan />} />
-          <Route path="/pelanggan/add" element={<AddPelanggan />} />
           <Route path="/produk/add" element={<AddProduct />} />
           <Route path="/produk/edit/:id" element={<EditProduct />} />
+          <Route path="/paket" element={<Paket/>} />
+          <Route path="/paket/add" element={<AddPaket />} />
+          <Route path="/pelanggan/add" element={<AddPelanggan />} />
+          <Route path="/pelanggan" element={<Pelanggan />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
