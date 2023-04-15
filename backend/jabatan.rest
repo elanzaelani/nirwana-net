@@ -1,0 +1,32 @@
+
+
+###
+//get All Jabatan
+GET http://localhost:5000/jabatans
+###
+//get Single Jabatan
+GET http://localhost:5000/jabatan/efe9dabb-61f5-44bb-8f9c-73fb7dc8e427
+###
+//Create jabatan
+POST  http://localhost:5000/jabatan
+Content-Type: application/json
+
+{
+    "nama_jab":"Staff"
+}
+
+
+###
+//Edit Jabatan
+PATCH http://localhost:5000/jabatan/efe9dabb-61f5-44bb-8f9c-73fb7dc8e427
+Content-Type: application/json
+
+{
+    "nama_jab":"HRD update"
+}
+
+###
+//Delete Jabatan
+DELETE http://localhost:5000/jabatan/ef665648-39cf-4492-84fa-08ec7f0d7b06
+
+

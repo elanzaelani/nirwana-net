@@ -1,0 +1,64 @@
+
+###
+//Login
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email":"elan@gmail.com",
+    "password":"sukses"   
+}
+
+//ME
+###
+GET http://localhost:5000/me
+###
+//Logout
+DELETE http://localhost:5000/logout
+
+
+
+
+###
+//getAllKaryawan
+GET http://localhost:5000/karyawans
+###
+//get Single Karyawan
+GET http://localhost:5000/karyawan/ee71f9dc-b0f9-4b52-bcc3-c192fd935fb5
+
+###
+//Create Karyawan
+POST http://localhost:5000/karyawan/
+Content-Type: application/json
+
+{
+    "nik":"f3274744663",
+    "nama":"Helmi",
+    "tgl_lahir":"02-01-1998",
+    "j_kelamin":"Laki-laki",
+    "alamat":"Kebon Awi",
+    "foto":"foto.jpg",
+    "status":"belum Kawin",
+    "no_kontak":"085226710",
+    "jabId":2
+}
+
+###
+PATCH http://localhost:5000/karyawan/ee71f9dc-b0f9-4b52-bcc3-c192fd935fb5
+Content-Type: application/json
+
+{
+   "nik":"32000004763",
+    "nama":"Eri Yanto ",
+    "tgl_lahir":"02-01-2000",
+    "j_kelamin":"Laki-laki",
+    "alamat":"Singaparna Raya",
+    "foto":"foto.jpg",
+    "status":"Kawin",
+    "no_kontak":"094949422910",
+    "jabId":2
+}
+
+###
+Delete Karyawan
+DELETE http://localhost:5000/karyawan/12367a8b-02fd-4857-a6e9-1094cbf18fdd

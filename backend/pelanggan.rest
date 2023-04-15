@@ -1,0 +1,71 @@
+//Create Peelanggan
+POST http://localhost:5000/pelanggan
+Content-Type: application/json
+
+{
+    "nik":"3287747547",
+    "nama":"Dimas Purnama",
+    "tgl_lahir":"02-01-1990",
+    "j_kelamin":"Laki-laki",
+    "alamat":"Ciawi",
+    "no_kontak":"0854323455",
+    "email":"dimas@gmail.com",
+    "pekerjaan":"Petani",
+    "tipe_koneksi":"Paket keluarga",
+    "ip_address":"893838678",
+    "tgl_koneksi":"03-01-2023",
+    "status_koneksi":"oke Banget",
+    "paketId":1
+}
+
+###
+POST http://localhost:5000/pelanggan/
+Content-Type: application/json
+
+{
+    "nik":"3287747547",
+    "nama":"Parno",
+    "tgl_lahir":"02-01-1990",
+    "j_kelamin":"Laki-laki",
+    "alamat":"Singaparna",
+    "no_kontak":"0854323455",
+    "email":"parno@gmail.com",
+    "pekerjaan":"Buruh",
+    "tipe_koneksi":"Paket keluarga",
+    "ip_address":"893838678",
+    "tgl_koneksi":"03-01-2023",
+    "status_koneksi":"oke Banget",
+    "paketId":1
+}
+
+###
+//Get All pelanggan
+GET http://localhost:5000/pelanggans
+
+###
+//Get Single pelanggan
+GET http://localhost:5000/pelanggan/0118c3c5-85e1-4967-9197-9dfd5dd2e1fe
+
+###
+//Update Pelanggan
+PATCH http://localhost:5000/pelanggan/0118c3c5-85e1-4967-9197-9dfd5dd2e1fe
+Content-Type: application/json
+
+{
+   "nik":"3287747547",
+    "nama":"Parno Purnama",
+    "tgl_lahir":"02-01-1990",
+    "j_kelamin":"Laki-laki",
+    "alamat":"Singaparna",
+    "no_kontak":"0854323455",
+    "email":"parno@gmail.com",
+    "pekerjaan":"Buruh",
+    "tipe_koneksi":"Paket keluarga",
+    "ip_address":"893838678",
+    "tgl_koneksi":"03-01-2023",
+    "status_koneksi":"oke Banget",
+    "paketId":1
+}
+
+###
+DELETE http://localhost:5000/pelanggan/64d2e314-8ad1-4e10-b388-a97c2e0ad88d

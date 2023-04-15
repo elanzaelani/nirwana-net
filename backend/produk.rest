@@ -1,0 +1,33 @@
+//Create produk
+POST  http://localhost:5000/produk
+Content-Type: application/json
+
+{
+    "nama_produk":"Paket Voucher"
+}
+
+###
+//getALL Data Produk/search/pagination
+GET  http://localhost:5000/produks?search_query=home&page=0&limit=10
+###
+//getCount Data Produk
+GET  http://localhost:5000/produkRows
+###
+//getALL Data Produk
+GET  http://localhost:5000/produks
+
+###
+//getSIngle Data Produk
+GET  http://localhost:5000/produk/fc72f467-4e91-4a18-a3cc-8094492dfede
+
+###
+//Update Data Produk
+PATCH  http://localhost:5000/produk/fc72f467-4e91-4a18-a3cc-8094492dfede
+
+{
+    "nama_produk":"Paket Voucher Update"
+} 
+
+###
+// Delete Data Produk
+DELETE http://localhost:5000/produk/3d7cc6ad-4762-4c65-a3be-f8a8aa0127ce
