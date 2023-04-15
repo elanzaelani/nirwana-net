@@ -2,6 +2,7 @@ import sequelize from 'sequelize';
 import db from '../config/Database.js';
 import User from './UserModel.js';
 import Paket from './PaketModel.js';
+import Server from './ServerModel.js';
 
 const {DataTypes}=sequelize;
 
@@ -118,6 +119,13 @@ const Pelanggan =db.define('pelanggan',{
             notEmpty:true
         }
     },
+    serverId:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },
     userId:{
         type:DataTypes.INTEGER,
         allowNull:false,
@@ -135,6 +143,7 @@ const Pelanggan =db.define('pelanggan',{
 User.hasMany(Pelanggan);
 Pelanggan.belongsTo(User,{foreignKey:'userId'});
 Pelanggan.belongsTo(Paket,{foreignKey:'paketId'});
+Pelanggan.belongsTo(Server,{foreignKey:'serverId'});
 
 
 export default Pelanggan;
